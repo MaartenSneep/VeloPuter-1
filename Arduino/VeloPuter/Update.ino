@@ -651,7 +651,7 @@ void updateGear()
     if (currentError < minError)
     {
       minError = currentError;
-      gearOnCassette_index = i;
+      gearOnCassette_index = iEnd - i + 1;
       gearOnCassette_teeth = setTeethOnCassette[i];
     }
   }
