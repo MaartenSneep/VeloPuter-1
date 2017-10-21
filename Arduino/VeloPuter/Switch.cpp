@@ -19,7 +19,7 @@ class Switch
     byte iEnd = sizeof (tInterupts_ms) / sizeof (tInterupts_ms[0]) - 1;
     byte State = HIGH; // Note that due to the internal pull-up resistor HIGH means an open connection and LOW is a closed switch.
     byte StateChanged = LOW;
-    byte Pin = 255; // 255 is a default which denotes that the handleling is done via interupts
+    byte Pin = 255; // 255 is a default which denotes that the handling is done via interupts
 
   public:
     void setPin (byte pin)
@@ -74,8 +74,6 @@ class Switch
        ***************************************************/
       byte numOfInterupts = 0;
       float frequency = 0;
-
-      String DEBUG = "T: " ;
 
       tNow_ms = millis();
 

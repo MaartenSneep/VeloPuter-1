@@ -590,7 +590,7 @@ void updateSpeed()
     then from that calculate the speed in km/h.
   */
   speedSwitch.ReadOut();
-  speed_kmh = 3.6 * wheelCircumference_mm * speedSwitch.getInteruptFrequency(1250) / 1000;
+  speed_kmh = byte(0.0036 * wheelCircumference_mm * speedSwitch.getInteruptFrequency(1250));
 
 }
 
@@ -620,34 +620,39 @@ void updateGear()
   // Teeth Rear =  Teeth chain ring * Cadence (Hz) /  axle Speed (Hz)
   // axle speed = front axle speed * (front wheel circumference / read wheel circumference)
   //
-  gearOnCassette_teeth = float(setTeethOnCainring) * gearOnCassette_scaling * float(cadenceSwitch.getInteruptFrequency(1500)) / float(speedSwitch.getInteruptFrequency(1500));
-
-  //gearOnCassette_teeth = float(millis())/1000;
-
-  // when the slumpf is in 1:2.5 mode: devide the # of teeth by 2.5.
-  //  gearSlumpfOn = gearOnCassette_teeth > 36.75;
-  //  if (gearSlumpfOn)
-  //  {
-  //    gearOnCassette_teeth = gearOnCassette_teeth / 2.5;
-  //  }
+  float sprocket_teeth = float(setTeethOnCainring) * gearOnCassette_scaling * 
+                         float(cadenceSwitch.getInteruptFrequency(1500)) / 
+                         float(speedSwitch.getInteruptFrequency(1500));
+  
+  // Don't update when freewheeling. 
+  if (2*sprocket_teeth < setTeethOnCassette[0])
+  {
+    // The alternative is to not set gearOnCassette_teeth here
+    // In that case the previous value is shown, i.e. you will see the 
+    // last selected gear while freewheeling.
+    // 
+    // When setting to a value < 9 the display code will show hyphens.
+    //
+    // gearOnCassette_teeth = 1;
+    return;
+  }
+  
   //
-
-  //
-  // Find the minimum
+  // Find the minimum error with respect to the gears on the cassette.
   //
   float minError = 99.9;
   float currentError = 99.9;
-
+  
   int iEnd = sizeof (setTeethOnCassette) / sizeof (setTeethOnCassette[0]) - 1;
-  for (byte i = 0; i <= iEnd; i++)
+  for (int i = 0; i <= iEnd; i++)
   {
-    currentError  = abs(gearOnCassette_teeth - setTeethOnCassette[i]);
+    currentError  = fabs(sprocket_teeth - setTeethOnCassette[i]);
 
     if (currentError < minError)
     {
       minError = currentError;
-      //      gearOnCassette_index = setTeethOnCassette[i];
-      gearOnCassette_string = setTeethOnCassette_string[i];
+      gearOnCassette_index = i;
+      gearOnCassette_teeth = setTeethOnCassette[i];
     }
   }
 }

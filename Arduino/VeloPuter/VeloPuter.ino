@@ -25,20 +25,19 @@ U8GLIB_SH1106_128X64 u8g(U8G_I2C_OPT_NONE);   // The proper contructor for the d
 Led leftLed, rightLed, rearLed, headLed, auxLed;
 Switch leftSwitch, rightSwitch, upSwitch, downSwitch, brakeSwitch, speedSwitch, cadenceSwitch, alarmSwitch, configSwitch;
 
-int batteryPercentage_pct = 99;
+byte batteryPercentage_pct = 99;
 int cellVoltage_mv = 4200;
 
-int speed_kmh = 0;
-int cadence_rpm = 0;
-float gearOnCassette_teeth = 0.00;
-//int gearOnCassette_index = 0;
-String gearOnCassette_string = "-";
-int gearSlumpfOn = 0;
+byte speed_kmh = 0;
+byte cadence_rpm = 0;
+byte gearOnCassette_teeth = 0;
+byte gearOnCassette_index = 0;
+byte gearSlumpfOn = 0;
 
 
 //
-long DEBUGTlast = 0;
-long DEBUGTnow = 0;
+// long DEBUGTlast = 0;
+// long DEBUGTnow = 0;
 
 enum {BATTERY_GREEN, BATTERY_ORANGE, BATTERY_RED};
 byte doBatteryCheck = true;
@@ -71,7 +70,7 @@ void loop ()
   updateGear();    // Figure out which gear we are using at the moment.
 #endif
   updateSleep();   // See is we need to powerdown the Arduino
-  updateConfig();  // Updte the config. For now: only the
+  updateConfig();  // Update the config. For now: only the
 
 }
 

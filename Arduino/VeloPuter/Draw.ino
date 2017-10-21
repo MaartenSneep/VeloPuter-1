@@ -200,7 +200,7 @@ void drawBatteryIcon()
   }
   else
   {
-
+    /* No battery check, no battery icon */
   }
 }
 
@@ -274,37 +274,34 @@ void drawGear()
 #if defined(QUATRO) || defined(ICB_DF)
   if (gearOnCassette_teeth > 9 and gearOnCassette_teeth < 100) // no NAN and inf on display.
   {
+    if (gearOnCassette_index < 10)
+    {
+        u8g.setPrintPos (118, 17); // gear <10
+    }
+    else
+    {
+        u8g.setPrintPos (109, 17); // gear >= 10, <100
+    }
+    u8g.print (gearOnCassette_index);
+    
+    if (gearOnCassette_teeth < 10)
+    {
+        u8g.setPrintPos (118, 33); // teeth <10 (yes, 9 teeth sprockets exist)
+    }
+    else
+    {
+        u8g.setPrintPos (109, 33); // teeth >= 10
+    }
 
-
-    // Either the
-    //    if (gearOnCassette_index >= 10)
-    //    {
-    //      u8g.setPrintPos (109, 17);
-    //    }
-    //    else
-    //    {
-    //      u8g.setPrintPos (119, 17);
-    //    }
-
- //   int col = 129 - 10 * gearOnCassette_string.length();
- //   u8g.setPrintPos (col, 17);
- //   u8g.print (gearOnCassette_string);
-
-    // temp: also print the actual number
-    u8g.setPrintPos (94,17); //94 when float
-    u8g.print (gearOnCassette_teeth);
-
-        // temp: also print the actual number
     u8g.setPrintPos (109,33); //94 when float
-    int gearOnCassette_teeth_int = round(gearOnCassette_teeth + 0.5);
-    u8g.print (gearOnCassette_teeth_int);
+    u8g.print (gearOnCassette_teeth);
 
   }
   else
   {
-    u8g.setPrintPos (119, 17);
+    u8g.setPrintPos (118, 17);
     u8g.print ('-');
-    u8g.setPrintPos (119, 33);
+    u8g.setPrintPos (118, 33);
     u8g.print ('-');
   }
 #endif

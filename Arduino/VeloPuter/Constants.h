@@ -112,95 +112,88 @@ const byte setTeethOnCainring = 53; // MaartenS: 53
 
 #if defined(QUATRO)
 const byte setTeethOnCassette[20] = {11, 13, 15, 17, 19, 22, 25, 28, 32, 36,
-                                      2750,  3250,  37, 42, 47, 55, 62, 70, 80, 90
+                                      255,  255,  37, 42, 47, 55, 62, 70, 80, 90
                                      }; // Quatro Note that I put two of the gears to 100 time the number to avoid confusion with the normal low gearing (36 etc). S11 and S13 will not be displayed.
-const String setTeethOnCassette_string[20] = {"11", "13", "15", "17", "19", "22", "25", "28", "32", "36",
-                                              "s11", "s13", "s15", "s17", "s19", "s22", "s25", "s28", "s32", "s36"
-                                             };
 #elif defined(ICB_DF)
 const byte setTeethOnCassette[10] = {11, 12, 13, 15, 17, 19, 22, 25, 28, 32};
-const String setTeethOnCassette_string[10] = {"11", "12", "13", "15", "17", "19", "22", "25", "28", "32"};
 #else
 const byte setTeethOnCassette[20] = {11, 13, 15, 17, 19, 22, 25, 28, 32, 36,
-                                      2750,  3250,  37, 42, 47, 55, 62, 70, 80, 90
+                                      255,  255,  37, 42, 47, 55, 62, 70, 80, 90
                                      }; // Quatro Note that I put two of the gears to 100 time the number to avoid confusion with the normal low gearing (36 etc). S11 and S13 will not be displayed.
-const String setTeethOnCassette_string[20] = {"11", "13", "15", "17", "19", "22", "25", "28", "32", "36",
-                                              "s11", "s13", "s15", "s17", "s19", "s22", "s25", "s28", "s32", "s36"
-                                             }; // Quatro
 #endif
 
 /*
   Defaullt intensiteiten
 */
-const int leftLedOffIntensity = 0; // Note that currently pwm is disabled for the blinker pins. See of this has anything to do with the failing display/.
-const int leftLedLowIntensity = 255;
-const int leftLedMediumIntensity = 255;
-const int leftLedHighIntensity = 255;
-const int leftLedMaxIntensity = 255;
+const byte leftLedOffIntensity = 0; // Note that currently pwm is disabled for the blinker pins. See of this has anything to do with the failing display/.
+const byte leftLedLowIntensity = 255;
+const byte leftLedMediumIntensity = 255;
+const byte leftLedHighIntensity = 255;
+const byte leftLedMaxIntensity = 255;
 
-const int rightLedOffIntensity = 0;
-const int rightLedLowIntensity = 255;
-const int rightLedMediumIntensity = 255;
-const int rightLedHighIntensity = 255;
-const int rightLedMaxIntensity = 255;
+const byte rightLedOffIntensity = 0;
+const byte rightLedLowIntensity = 255;
+const byte rightLedMediumIntensity = 255;
+const byte rightLedHighIntensity = 255;
+const byte rightLedMaxIntensity = 255;
 
-const int rearLedOffIntensity = 8;
-const int rearLedLowIntensity = 32;
-const int rearLedMediumIntensity = 64;
-const int rearLedHighIntensity = 64; // Note that this stops the up/down!
-const int rearLedMaxIntensity = 255;
+const byte rearLedOffIntensity = 8;
+const byte rearLedLowIntensity = 32;
+const byte rearLedMediumIntensity = 64;
+const byte rearLedHighIntensity = 64; // Note that this stops the up/down!
+const byte rearLedMaxIntensity = 255;
 
 #if  defined(STRADA)
-const int headLedOffIntensity = 0;
-const int headLedLowIntensity = 16;
-const int headLedMediumIntensity = 96;
-const int headLedHighIntensity = 255;
-const int headLedMaxIntensity = 255;
+const byte headLedOffIntensity = 0;
+const byte headLedLowIntensity = 16;
+const byte headLedMediumIntensity = 96;
+const byte headLedHighIntensity = 255;
+const byte headLedMaxIntensity = 255;
 
-const int auxLedOffIntensity = 0; //aux is just an other headlinght
-const int auxLedLowIntensity = 16;
-const int auxLedMediumIntensity = 96;
-const int auxLedHighIntensity = 255;
-const int auxLedMaxIntensity = 255;
+const byte auxLedOffIntensity = 0; //aux is just an other headlinght
+const byte auxLedLowIntensity = 16;
+const byte auxLedMediumIntensity = 96;
+const byte auxLedHighIntensity = 255;
+const byte auxLedMaxIntensity = 255;
 
 #elif defined(QUILTJE)
-const int headLedOffIntensity = 0;
-const int headLedLowIntensity = 32;
-const int headLedMediumIntensity = 128;
-const int headLedHighIntensity = 255;
-const int headLedMaxIntensity = 255;
+const byte headLedOffIntensity = 0;
+const byte headLedLowIntensity = 32;
+const byte headLedMediumIntensity = 128;
+const byte headLedHighIntensity = 255;
+const byte headLedMaxIntensity = 255;
 
-const int auxLedOffIntensity = 0; // aux is the floodlight
-const int auxLedLowIntensity = 16;
-const int auxLedMediumIntensity = 32;
-const int auxLedHighIntensity = 255;
-const int auxLedMaxIntensity = 255;
+const byte auxLedOffIntensity = 0; // aux is the floodlight
+const byte auxLedLowIntensity = 16;
+const byte auxLedMediumIntensity = 32;
+const byte auxLedHighIntensity = 255;
+const byte auxLedMaxIntensity = 255;
 
 #elif defined(QUATRO)
-const int headLedOffIntensity = 0;
-const int headLedLowIntensity = 32;
-const int headLedMediumIntensity = 96;
-const int headLedHighIntensity = 255;
-const int headLedMaxIntensity = 255;
+const byte headLedOffIntensity = 0;
+const byte headLedLowIntensity = 32;
+const byte headLedMediumIntensity = 96;
+const byte headLedHighIntensity = 255;
+const byte headLedMaxIntensity = 255;
 
-const int auxLedOffIntensity = 0; // aux is the brakelight
-const int auxLedLowIntensity = 255;
-const int auxLedMediumIntensity = 255;
-const int auxLedHighIntensity = 255;
-const int auxLedMaxIntensity = 255;
+const byte auxLedOffIntensity = 0; // aux is the brakelight
+const byte auxLedLowIntensity = 255;
+const byte auxLedMediumIntensity = 255;
+const byte auxLedHighIntensity = 255;
+const byte auxLedMaxIntensity = 255;
 
 #elif defined(ICB_DF)
-const int headLedOffIntensity = 0;
-const int headLedLowIntensity = 32;
-const int headLedMediumIntensity = 96;
-const int headLedHighIntensity = 255;
-const int headLedMaxIntensity = 255;
+const byte headLedOffIntensity = 0;
+const byte headLedLowIntensity = 32;
+const byte headLedMediumIntensity = 96;
+const byte headLedHighIntensity = 255;
+const byte headLedMaxIntensity = 255;
 
-const int auxLedOffIntensity = 0; // aux is not connected in the ICB_DF
-const int auxLedLowIntensity = 0;
-const int auxLedMediumIntensity = 0;
-const int auxLedHighIntensity = 0;
-const int auxLedMaxIntensity = 0;
+const byte auxLedOffIntensity = 0; // aux is not connected in the ICB_DF
+const byte auxLedLowIntensity = 0;
+const byte auxLedMediumIntensity = 0;
+const byte auxLedHighIntensity = 0;
+const byte auxLedMaxIntensity = 0;
 
 #endif
 

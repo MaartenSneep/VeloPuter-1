@@ -101,6 +101,6 @@ void setup()   {
 
   pinMode(speakerPin, OUTPUT);
 
-  drawSplash ();
+  drawSplash (); // ! drawSplash already includes a 1 second delay.
   delay (1000);
 }
