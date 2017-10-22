@@ -41,6 +41,7 @@ byte gearSlumpfOn = 0;
 
 enum {BATTERY_GREEN, BATTERY_ORANGE, BATTERY_RED};
 byte doBatteryCheck = true;
+byte settingsMode = false;
 byte statusBattery = BATTERY_GREEN;
 volatile byte statusPowerDown = false;
 byte stateAlarmBlinkersOn = false;
@@ -57,21 +58,28 @@ void loop ()
 {
   u8g.firstPage();
   do {
-    updateHead();    // change headlight intensity
-    updateRear();    // update rear lights. This includes the brakelight when applicable.
-    updateBlinkers();// Update the blinkers
-    drawScreen();    // Write all the information to the display.
+    if (settingsMode)
+    {
+    } else {
+      updateHead();    // change headlight intensity
+      updateRear();    // update rear lights. This includes the brakelight when applicable.
+      updateBlinkers();// Update the blinkers
+      drawScreen();    // Write all the information to the display.
+    }
   } while ( u8g.nextPage() );
-
-  updateBattery(); // Read out and calculate the acutual battery status
-  updateSpeed();   // Check the speed based on the interupts which have been.
-  updateCadence(); // Check the cadence based on the interupts which have been.
+  
+  if (settingsMode)
+  {
+  } else {
+    updateBattery(); // Read out and calculate the acutual battery status
+    updateSpeed();   // Check the speed based on the interupts which have been.
+    updateCadence(); // Check the cadence based on the interupts which have been.
 #if defined(QUATRO) || defined(ICB_DF)
-  updateGear();    // Figure out which gear we are using at the moment.
+    updateGear();    // Figure out which gear we are using at the moment.
 #endif
-  updateSleep();   // See is we need to powerdown the Arduino
-  updateConfig();  // Update the config. For now: only the
-
+    updateSleep();   // See is we need to powerdown the Arduino
+    updateConfig();  // Update the config. For now: only the
+  }
 }
 
 /**********************************************************************************************
